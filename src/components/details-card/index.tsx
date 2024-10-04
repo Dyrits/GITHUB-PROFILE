@@ -1,10 +1,6 @@
-import { Fragment } from 'react';
-import {
-  AiFillGithub,
-  AiFillInstagram,
-  AiFillMediumSquare,
-} from 'react-icons/ai';
-import { CgDribbble } from 'react-icons/cg';
+import { Fragment } from "react";
+import { AiFillGithub, AiFillInstagram, AiFillMediumSquare } from "react-icons/ai";
+import { CgDribbble } from "react-icons/cg";
 import {
   FaBehanceSquare,
   FaBuilding,
@@ -17,18 +13,15 @@ import {
   FaSkype,
   FaStackOverflow,
   FaTelegram,
-  FaYoutube,
-} from 'react-icons/fa';
-import { FaSquareThreads } from 'react-icons/fa6';
-import { MdLocationOn } from 'react-icons/md';
-import { RiMailFill, RiPhoneFill } from 'react-icons/ri';
-import { SiResearchgate, SiTwitter, SiUdemy } from 'react-icons/si';
-import { Profile } from '../../interfaces/profile';
-import {
-  SanitizedGithub,
-  SanitizedSocial,
-} from '../../interfaces/sanitized-config';
-import { skeleton } from '../../utils';
+  FaYoutube
+} from "react-icons/fa";
+import { FaSquareThreads } from "react-icons/fa6";
+import { MdLocationOn } from "react-icons/md";
+import { RiMailFill, RiPhoneFill } from "react-icons/ri";
+import { SiResearchgate, SiTwitter, SiUdemy } from "react-icons/si";
+import { Profile } from "../../interfaces/profile";
+import { SanitizedGithub, SanitizedSocial } from "../../interfaces/sanitized-config";
+import { skeleton } from "../../utils";
 
 type Props = {
   profile: Profile | null;
@@ -38,18 +31,15 @@ type Props = {
 };
 
 const isCompanyMention = (company: string): boolean => {
-  return company.startsWith('@') && !company.includes(' ');
+  return company.startsWith("@") && !company.includes(" ");
 };
 
 const companyLink = (company: string): string => {
   return `https://github.com/${company.substring(1)}`;
 };
 
-const getFormattedMastodonValue = (
-  mastodonValue: string,
-  isLink: boolean,
-): string => {
-  const [username, server] = mastodonValue.split('@');
+const getFormattedMastodonValue = (mastodonValue: string, isLink: boolean): string => {
+  const [username, server] = mastodonValue.split("@");
 
   if (isLink) {
     return `https://${server}/@${username}`;
@@ -71,19 +61,12 @@ const ListItem: React.FC<{
         {icon} {title}
       </div>
       <div
-        className={`${
-          skeleton ? 'flex-grow' : ''
-        } text-sm font-normal text-right mr-2 ml-3 ${link ? 'truncate' : ''}`}
+        className={`${skeleton ? "flex-grow" : ""} text-sm font-normal text-right mr-2 ml-3 ${link ? "truncate" : ""}`}
         style={{
-          wordBreak: 'break-word',
+          wordBreak: "break-word"
         }}
       >
-        <a
-          href={link}
-          target="_blank"
-          rel="noreferrer"
-          className="flex justify-start py-2 px-1 items-center"
-        >
+        <a href={link} target="_blank" rel="noreferrer" className="flex justify-start py-2 px-1 items-center">
           {value}
         </a>
       </div>
@@ -99,19 +82,14 @@ const OrganizationItem: React.FC<{
   skeleton?: boolean;
 }> = ({ icon, title, value, link, skeleton = false }) => {
   const renderValue = () => {
-    if (typeof value === 'string') {
-      return value.split(' ').map((company) => {
+    if (typeof value === "string") {
+      return value.split(" ").map(company => {
         company = company.trim();
         if (!company) return null;
 
         if (isCompanyMention(company)) {
           return (
-            <a
-              href={companyLink(company)}
-              target="_blank"
-              rel="noreferrer"
-              key={company}
-            >
+            <a href={companyLink(company)} target="_blank" rel="noreferrer" key={company}>
               {company}
             </a>
           );
@@ -130,10 +108,10 @@ const OrganizationItem: React.FC<{
       </div>
       <div
         className={`${
-          skeleton ? 'flex-grow' : ''
-        } text-sm font-normal text-right mr-2 ml-3 space-x-2 ${link ? 'truncate' : ''}`}
+          skeleton ? "flex-grow" : ""
+        } text-sm font-normal text-right mr-2 ml-3 space-x-2 ${link ? "truncate" : ""}`}
         style={{
-          wordBreak: 'break-word',
+          wordBreak: "break-word"
         }}
       >
         {renderValue()}
@@ -159,10 +137,10 @@ const DetailsCard = ({ profile, loading, social, github }: Props) => {
         <ListItem
           key={index}
           skeleton={true}
-          icon={skeleton({ widthCls: 'w-4', heightCls: 'h-4' })}
-          title={skeleton({ widthCls: 'w-24', heightCls: 'h-4' })}
-          value={skeleton({ widthCls: 'w-full', heightCls: 'h-4' })}
-        />,
+          icon={skeleton({ widthCls: "w-4", heightCls: "h-4" })}
+          title={skeleton({ widthCls: "w-24", heightCls: "h-4" })}
+          value={skeleton({ widthCls: "w-full", heightCls: "h-4" })}
+        />
       );
     }
 
@@ -177,23 +155,13 @@ const DetailsCard = ({ profile, loading, social, github }: Props) => {
             renderSkeleton()
           ) : (
             <Fragment>
-              {profile.location && (
-                <ListItem
-                  icon={<MdLocationOn />}
-                  title="Based in:"
-                  value={profile.location}
-                />
-              )}
+              {profile.location && <ListItem icon={<MdLocationOn />} title="Based in:" value={profile.location} />}
               {profile.company && (
                 <OrganizationItem
                   icon={<FaBuilding />}
                   title="Organization:"
                   value={profile.company}
-                  link={
-                    isCompanyMention(profile.company.trim())
-                      ? companyLink(profile.company.trim())
-                      : undefined
-                  }
+                  link={isCompanyMention(profile.company.trim()) ? companyLink(profile.company.trim()) : undefined}
                 />
               )}
               <ListItem
@@ -279,7 +247,7 @@ const DetailsCard = ({ profile, loading, social, github }: Props) => {
                   icon={<FaSquareThreads />}
                   title="Threads:"
                   value={social.threads}
-                  link={`https://www.threads.net/@${social.threads.replace('@', '')}`}
+                  link={`https://www.threads.net/@${social.threads.replace("@", "")}`}
                 />
               )}
               {social?.youtube && (
@@ -307,18 +275,13 @@ const DetailsCard = ({ profile, loading, social, github }: Props) => {
                 />
               )}
               {social?.dev && (
-                <ListItem
-                  icon={<FaDev />}
-                  title="Dev:"
-                  value={social.dev}
-                  link={`https://dev.to/${social.dev}`}
-                />
+                <ListItem icon={<FaDev />} title="Dev:" value={social.dev} link={`https://dev.to/${social.dev}`} />
               )}
               {social?.stackoverflow && (
                 <ListItem
                   icon={<FaStackOverflow />}
                   title="Stack Overflow:"
-                  value={social.stackoverflow.split('/').slice(-1)}
+                  value={social.stackoverflow.split("/").slice(-1)}
                   link={`https://stackoverflow.com/users/${social.stackoverflow}`}
                 />
               )}
@@ -326,23 +289,12 @@ const DetailsCard = ({ profile, loading, social, github }: Props) => {
                 <ListItem
                   icon={<FaGlobe />}
                   title="Website:"
-                  value={social.website
-                    .replace('https://', '')
-                    .replace('http://', '')}
-                  link={
-                    !social.website.startsWith('http')
-                      ? `http://${social.website}`
-                      : social.website
-                  }
+                  value={social.website.replace("https://", "").replace("http://", "")}
+                  link={!social.website.startsWith("http") ? `http://${social.website}` : social.website}
                 />
               )}
               {social?.skype && (
-                <ListItem
-                  icon={<FaSkype />}
-                  title="Skype"
-                  value={social.skype}
-                  link={`skype:${social.skype}?chat`}
-                />
+                <ListItem icon={<FaSkype />} title="Skype" value={social.skype} link={`skype:${social.skype}?chat`} />
               )}
               {social?.telegram && (
                 <ListItem
@@ -353,20 +305,10 @@ const DetailsCard = ({ profile, loading, social, github }: Props) => {
                 />
               )}
               {social?.phone && (
-                <ListItem
-                  icon={<RiPhoneFill />}
-                  title="Phone:"
-                  value={social.phone}
-                  link={`tel:${social.phone}`}
-                />
+                <ListItem icon={<RiPhoneFill />} title="Phone:" value={social.phone} link={`tel:${social.phone}`} />
               )}
               {social?.email && (
-                <ListItem
-                  icon={<RiMailFill />}
-                  title="Email:"
-                  value={social.email}
-                  link={`mailto:${social.email}`}
-                />
+                <ListItem icon={<RiMailFill />} title="Email:" value={social.email} link={`mailto:${social.email}`} />
               )}
             </Fragment>
           )}

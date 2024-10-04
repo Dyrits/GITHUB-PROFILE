@@ -1,5 +1,5 @@
-import { Helmet } from 'react-helmet-async';
-import { isDarkishTheme } from '../../utils';
+import { Helmet } from "react-helmet-async";
+import { isDarkishTheme } from "../../utils";
 
 type HeadTagEditorProps = {
   googleAnalyticsId?: string;
@@ -13,22 +13,13 @@ type HeadTagEditorProps = {
  * @param {HeadTagEditorProps} appliedTheme - The applied theme.
  * @return {React.ReactElement} The head tag editor component.
  */
-const HeadTagEditor: React.FC<HeadTagEditorProps> = ({
-  googleAnalyticsId,
-  appliedTheme,
-}) => {
+const HeadTagEditor: React.FC<HeadTagEditorProps> = ({ googleAnalyticsId, appliedTheme }) => {
   return (
     <Helmet>
-      <meta
-        name="theme-color"
-        content={isDarkishTheme(appliedTheme) ? '#000000' : '#ffffff'}
-      />
+      <meta name="theme-color" content={isDarkishTheme(appliedTheme) ? "#000000" : "#ffffff"} />
       {googleAnalyticsId && (
         <>
-          <script
-            async
-            src={`https://www.googletagmanager.com/gtag/js?id=${googleAnalyticsId}`}
-          ></script>
+          <script async src={`https://www.googletagmanager.com/gtag/js?id=${googleAnalyticsId}`}></script>
           <script>
             {`window.dataLayer = window.dataLayer || [];
 function gtag() {

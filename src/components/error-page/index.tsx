@@ -1,4 +1,4 @@
-import { CustomError } from '../../constants/errors';
+import { CustomError } from "../../constants/errors";
 
 /**
  * Render the ErrorPage component.
@@ -6,19 +6,15 @@ import { CustomError } from '../../constants/errors';
  * @param props - The props for the ErrorPage component.
  * @returns The rendered ErrorPage component.
  */
-const ErrorPage: React.FC<CustomError> = (props) => {
+const ErrorPage: React.FC<CustomError> = props => {
   return (
     <div className="min-w-screen min-h-screen bg-base-200 flex items-center p-5 lg:p-20 overflow-hidden relative">
       <div className="flex-1 min-h-full min-w-full rounded-3xl bg-base-100 shadow-xl p-10 lg:p-20 text-gray-800 relative md:flex items-center text-center md:text-left">
         <div className="w-full">
           <div className="mb-10 md:mb-20 mt-10 md:mt-20 text-gray-600 font-light">
-            <h1 className="font-black uppercase text-3xl lg:text-5xl text-primary mb-10">
-              {`${props.status}`}
-            </h1>
+            <h1 className="font-black uppercase text-3xl lg:text-5xl text-primary mb-10">{`${props.status}`}</h1>
             <p className="text-lg pb-2 text-base-content">{props.title}</p>
-            <div className="text-base-content text-opacity-60">
-              {props.subTitle}
-            </div>
+            <div className="text-base-content text-opacity-60">{props.subTitle}</div>
           </div>
         </div>
       </div>

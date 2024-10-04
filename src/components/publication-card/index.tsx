@@ -1,14 +1,8 @@
-import { Fragment } from 'react';
-import { SanitizedPublication } from '../../interfaces/sanitized-config';
-import { skeleton } from '../../utils';
+import { Fragment } from "react";
+import { SanitizedPublication } from "../../interfaces/sanitized-config";
+import { skeleton } from "../../utils";
 
-const PublicationCard = ({
-  publications,
-  loading,
-}: {
-  publications: SanitizedPublication[];
-  loading: boolean;
-}) => {
+const PublicationCard = ({ publications, loading }: { publications: SanitizedPublication[]; loading: boolean }) => {
   const renderSkeleton = () => {
     const array = [];
     for (let index = 0; index < publications.length; index++) {
@@ -21,44 +15,44 @@ const PublicationCard = ({
                   <div className="text-center w-full">
                     <h2 className="mb-2">
                       {skeleton({
-                        widthCls: 'w-32',
-                        heightCls: 'h-8',
-                        className: 'mb-2 mx-auto',
+                        widthCls: "w-32",
+                        heightCls: "h-8",
+                        className: "mb-2 mx-auto"
                       })}
                     </h2>
                     <div>
                       {skeleton({
-                        widthCls: 'w-20',
-                        heightCls: 'h-4',
-                        className: 'mb-2 mx-auto',
+                        widthCls: "w-20",
+                        heightCls: "h-4",
+                        className: "mb-2 mx-auto"
                       })}
                     </div>
                     <div>
                       {skeleton({
-                        widthCls: 'w-20',
-                        heightCls: 'h-4',
-                        className: 'mb-2 mx-auto',
+                        widthCls: "w-20",
+                        heightCls: "h-4",
+                        className: "mb-2 mx-auto"
                       })}
                     </div>
                     <div>
                       {skeleton({
-                        widthCls: 'w-full',
-                        heightCls: 'h-4',
-                        className: 'mb-2 mx-auto',
+                        widthCls: "w-full",
+                        heightCls: "h-4",
+                        className: "mb-2 mx-auto"
                       })}
                     </div>
                     <div>
                       {skeleton({
-                        widthCls: 'w-full',
-                        heightCls: 'h-4',
-                        className: 'mb-2 mx-auto',
+                        widthCls: "w-full",
+                        heightCls: "h-4",
+                        className: "mb-2 mx-auto"
                       })}
                     </div>
                     <div>
                       {skeleton({
-                        widthCls: 'w-full',
-                        heightCls: 'h-4',
-                        className: 'mb-2 mx-auto',
+                        widthCls: "w-full",
+                        heightCls: "h-4",
+                        className: "mb-2 mx-auto"
                       })}
                     </div>
                   </div>
@@ -66,7 +60,7 @@ const PublicationCard = ({
               </div>
             </div>
           </div>
-        </div>,
+        </div>
       );
     }
 
@@ -88,25 +82,11 @@ const PublicationCard = ({
               <div className="px-4">
                 <div className="text-center w-full">
                   <h2 className="font-medium opacity-60 mb-2">{item.title}</h2>
-                  {item.conferenceName && (
-                    <p className="text-base-content opacity-50 text-sm">
-                      {item.conferenceName}
-                    </p>
-                  )}
-                  {item.journalName && (
-                    <p className="text-base-content opacity-50 text-sm">
-                      {item.journalName}
-                    </p>
-                  )}
-                  {item.authors && (
-                    <p className="text-base-content opacity-50 text-sm">
-                      Author: {item.authors}
-                    </p>
-                  )}
+                  {item.conferenceName && <p className="text-base-content opacity-50 text-sm">{item.conferenceName}</p>}
+                  {item.journalName && <p className="text-base-content opacity-50 text-sm">{item.journalName}</p>}
+                  {item.authors && <p className="text-base-content opacity-50 text-sm">Author: {item.authors}</p>}
                   {item.description && (
-                    <p className="mt-2 text-base-content text-opacity-60 text-sm text-justify">
-                      {item.description}
-                    </p>
+                    <p className="mt-2 text-base-content text-opacity-60 text-sm text-justify">{item.description}</p>
                   )}
                 </div>
               </div>
@@ -127,11 +107,9 @@ const PublicationCard = ({
                 <div className="mx-3 flex items-center justify-between mb-2">
                   <h5 className="card-title">
                     {loading ? (
-                      skeleton({ widthCls: 'w-40', heightCls: 'h-8' })
+                      skeleton({ widthCls: "w-40", heightCls: "h-8" })
                     ) : (
-                      <span className="text-base-content opacity-70">
-                        Publications
-                      </span>
+                      <span className="text-base-content opacity-70">Publications</span>
                     )}
                   </h5>
                 </div>

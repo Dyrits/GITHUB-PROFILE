@@ -121,9 +121,9 @@ export interface SanitizedCustomTheme {
   secondary: string;
   accent: string;
   neutral: string;
-  'base-100': string;
-  '--rounded-box': string;
-  '--rounded-btn': string;
+  "base-100": string;
+  "--rounded-box": string;
+  "--rounded-btn": string;
 }
 
 export interface SanitizedThemeConfig {

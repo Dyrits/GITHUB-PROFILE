@@ -1,8 +1,8 @@
-import { AiOutlineControl } from 'react-icons/ai';
-import { SanitizedThemeConfig } from '../../interfaces/sanitized-config';
-import { LOCAL_STORAGE_KEY_NAME } from '../../constants';
-import { skeleton } from '../../utils';
-import { MouseEvent } from 'react';
+import { AiOutlineControl } from "react-icons/ai";
+import { SanitizedThemeConfig } from "../../interfaces/sanitized-config";
+import { LOCAL_STORAGE_KEY_NAME } from "../../constants";
+import { skeleton } from "../../utils";
+import { MouseEvent } from "react";
 
 /**
  * Renders a theme changer component.
@@ -18,23 +18,19 @@ const ThemeChanger = ({
   theme,
   setTheme,
   loading,
-  themeConfig,
+  themeConfig
 }: {
   theme: string;
   setTheme: (theme: string) => void;
   loading: boolean;
   themeConfig: SanitizedThemeConfig;
 }) => {
-  const changeTheme = (
-    e: MouseEvent<HTMLAnchorElement>,
-    selectedTheme: string,
-  ) => {
+  const changeTheme = (e: MouseEvent<HTMLAnchorElement>, selectedTheme: string) => {
     e.preventDefault();
 
-    document.querySelector('html')?.setAttribute('data-theme', selectedTheme);
+    document.querySelector("html")?.setAttribute("data-theme", selectedTheme);
 
-    typeof window !== 'undefined' &&
-      localStorage.setItem(LOCAL_STORAGE_KEY_NAME, selectedTheme);
+    typeof window !== "undefined" && localStorage.setItem(LOCAL_STORAGE_KEY_NAME, selectedTheme);
 
     setTheme(selectedTheme);
   };
@@ -46,9 +42,9 @@ const ThemeChanger = ({
           <h5 className="card-title">
             {loading ? (
               skeleton({
-                widthCls: 'w-20',
-                heightCls: 'h-8',
-                className: 'mb-1',
+                widthCls: "w-20",
+                heightCls: "h-8",
+                className: "mb-1"
               })
             ) : (
               <span className="text-base-content opacity-70">Theme</span>
@@ -56,25 +52,22 @@ const ThemeChanger = ({
           </h5>
           <span className="text-base-content text-opacity-40 capitalize text-sm">
             {loading
-              ? skeleton({ widthCls: 'w-16', heightCls: 'h-5' })
+              ? skeleton({ widthCls: "w-16", heightCls: "h-5" })
               : theme === themeConfig.defaultTheme
-                ? 'Default'
+                ? "Default"
                 : theme}
           </span>
         </div>
         <div className="flex-0">
           {loading ? (
             skeleton({
-              widthCls: 'w-14 md:w-28',
-              heightCls: 'h-10',
-              className: 'mr-6',
+              widthCls: "w-14 md:w-28",
+              heightCls: "h-10",
+              className: "mr-6"
             })
           ) : (
             <div title="Change Theme" className="dropdown dropdown-end">
-              <div
-                tabIndex={0}
-                className="btn btn-ghost m-1 normal-case opacity-50 text-base-content"
-              >
+              <div tabIndex={0} className="btn btn-ghost m-1 normal-case opacity-50 text-base-content">
                 <AiOutlineControl className="inline-block w-5 h-5 stroke-current md:mr-2" />
                 <span className="hidden md:inline">Change Theme</span>
                 <svg
@@ -92,18 +85,13 @@ const ThemeChanger = ({
                 <ul className="p-4 menu compact">
                   {[
                     themeConfig.defaultTheme,
-                    ...themeConfig.themes.filter(
-                      (item) => item !== themeConfig.defaultTheme,
-                    ),
+                    ...themeConfig.themes.filter(item => item !== themeConfig.defaultTheme)
                   ].map((item, index) => (
                     <li key={index}>
                       {}
-                      <a
-                        onClick={(e) => changeTheme(e, item)}
-                        className={`${theme === item ? 'active' : ''}`}
-                      >
+                      <a onClick={e => changeTheme(e, item)} className={`${theme === item ? "active" : ""}`}>
                         <span className="opacity-60 capitalize">
-                          {item === themeConfig.defaultTheme ? 'Default' : item}
+                          {item === themeConfig.defaultTheme ? "Default" : item}
                         </span>
                       </a>
                     </li>

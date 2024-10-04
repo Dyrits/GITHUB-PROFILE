@@ -308,17 +308,17 @@ interface CustomTheme {
   /**
    * Base color of page
    */
-  'base-100'?: string;
+  "base-100"?: string;
 
   /**
    * Border radius of rounded-box
    */
-  '--rounded-box'?: string;
+  "--rounded-box"?: string;
 
   /**
    * Border radius of rounded-btn
    */
-  '--rounded-btn'?: string;
+  "--rounded-btn"?: string;
 }
 
 interface ThemeConfig {
